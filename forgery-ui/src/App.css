@@ -1,0 +1,243 @@
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #020617, #022c22, #064e3b);
+  color: white;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+  color: white;
+}
+
+header h1 {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  opacity: 0.6;
+  font-size: 14px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+    align-items: start;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #e2e8f0;
+
+  padding: 25px;
+  border-radius: 18px;
+
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: all 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+.preview {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.upload-box {
+    border: 2px dashed rgba(255,255,255,0.3);
+  background: rgba(255,255,255,0.05);
+  color: #cbd5f5;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.upload-box:hover {
+  border-color: #3b82f6;
+  background: rgba(255,255,255,0.1);
+}
+
+input, select {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-top: 5px;
+}
+
+select option {
+  background: #0f172a;   /* koyu arka plan */
+  color: #e2e8f0;        /* açık yazı */
+}
+
+select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 10px rgba(59,130,246,0.5);
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+
+  padding-right: 35px;
+}
+
+select {
+  backdrop-filter: blur(10px);
+}
+
+label {
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 14px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(59,130,246,0.4);
+}
+
+.info-box {
+  margin-top: 15px;
+  padding: 10px;
+  background: rgba(255,255,255,0.08);
+  color: #cbd5f5;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.badge {
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.badge.success {
+  background: #16a34a;
+  box-shadow: 0 0 15px rgba(22,163,74,0.6);
+}
+
+.badge.danger {
+  background: #dc2626;
+  box-shadow: 0 0 15px rgba(220,38,38,0.6);
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+.stats div {
+  flex: 1;
+  background: rgba(255,255,255,0.08);
+  padding: 14px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.interpretation {
+  margin-top: 15px;
+  font-size: 14px;
+  background: rgba(255,255,255,0.08);
+  padding: 15px;
+  border-radius: 10px;
+  line-height: 1.5;
+}
+
+.result-img {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 10px;
+  animation: zoomIn 0.4s ease;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.result-anim {
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.loader {
+  border: 4px solid #eee;
+  border-top: 4px solid #4a90e2;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+.error {
+  background: #ffe6e6;
+  color: #c0392b;
+  padding: 10px;
+  border-radius: 8px;
+}
