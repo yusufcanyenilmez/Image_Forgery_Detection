@@ -1,0 +1,110 @@
+\doxysection{ai\+\_\+analysis.\+Forgery\+LSTM Class Reference}
+\hypertarget{classai__analysis_1_1_forgery_l_s_t_m}{}\label{classai__analysis_1_1_forgery_l_s_t_m}\index{ai\_analysis.ForgeryLSTM@{ai\_analysis.ForgeryLSTM}}
+
+
+Inheritance diagram for ai\+\_\+analysis.\+Forgery\+LSTM:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{classai__analysis_1_1_forgery_l_s_t_m__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ai\+\_\+analysis.\+Forgery\+LSTM:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{classai__analysis_1_1_forgery_l_s_t_m__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classai__analysis_1_1_forgery_l_s_t_m_a32260ac8809b48d5aa87f92395c230ee}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self)
+\item 
+\doxymbox{\hyperlink{classai__analysis_1_1_forgery_l_s_t_m_a49523de5ddd041aa041e0c49c52764fc}{forward}} (self, x)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classai__analysis_1_1_forgery_l_s_t_m_a12072ad9bb157c0042687cc2139f9e19}{lstm}} = nn.\+LSTM(input\+\_\+size=512, hidden\+\_\+size=128, batch\+\_\+first=True)
+\item 
+\doxymbox{\hyperlink{classai__analysis_1_1_forgery_l_s_t_m_a958f97cfc2d5d6813067a62cef614e68}{fc}} = nn.\+Linear(128, 1)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}    @brief CNN öznitelik haritalarını ardışık veri olarak inceleyen LSTM yapay sinir ağı sınıfı.
+    @details ResNet mimarisinin son katmanından elde edilen 512 boyutlu uzaysal vektör serilerini
+             zaman/sıra düzleminde işleyerek pikseller arası mikroskobik manipülasyonları ayrıştırır.
+\end{DoxyVerb}
+ 
+
+\label{classai__analysis_1_1_forgery_l_s_t_m_doc-constructors}
+\Hypertarget{classai__analysis_1_1_forgery_l_s_t_m_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classai__analysis_1_1_forgery_l_s_t_m_a32260ac8809b48d5aa87f92395c230ee}\index{ai\_analysis.ForgeryLSTM@{ai\_analysis.ForgeryLSTM}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!ai\_analysis.ForgeryLSTM@{ai\_analysis.ForgeryLSTM}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classai__analysis_1_1_forgery_l_s_t_m_a32260ac8809b48d5aa87f92395c230ee} 
+ai\+\_\+analysis.\+Forgery\+LSTM.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Katman yapılandırmalarını gerçekleştiren kurucu fonksiyon.
+    @details 512 girdili, 128 gizli hücreli bir LSTM katmanı ve olasılık çıktısı üreten doğrusal bir sınıflandırma (FC) katmanı ayağa kaldırır.
+\end{DoxyVerb}
+ Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{classai__analysis_1_1_forgery_l_s_t_m_a32260ac8809b48d5aa87f92395c230ee_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{classai__analysis_1_1_forgery_l_s_t_m_a32260ac8809b48d5aa87f92395c230ee_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{classai__analysis_1_1_forgery_l_s_t_m_doc-func-members}
+\Hypertarget{classai__analysis_1_1_forgery_l_s_t_m_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classai__analysis_1_1_forgery_l_s_t_m_a49523de5ddd041aa041e0c49c52764fc}\index{ai\_analysis.ForgeryLSTM@{ai\_analysis.ForgeryLSTM}!forward@{forward}}
+\index{forward@{forward}!ai\_analysis.ForgeryLSTM@{ai\_analysis.ForgeryLSTM}}
+\doxysubsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily \label{classai__analysis_1_1_forgery_l_s_t_m_a49523de5ddd041aa041e0c49c52764fc} 
+ai\+\_\+analysis.\+Forgery\+LSTM.\+forward (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{}]{x}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Modelin ileri besleme (forward propagation) hesaplamalarını yürütür.
+    @param x CNN modelinden sıkıştırılarak aktarılan tensör verisi.
+    @return Olasılık değeri döndüren Sigmoid aktivasyon fonksiyonu çıktısı ([0, 1] arası).
+\end{DoxyVerb}
+ 
+
+\label{classai__analysis_1_1_forgery_l_s_t_m_doc-variable-members}
+\Hypertarget{classai__analysis_1_1_forgery_l_s_t_m_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classai__analysis_1_1_forgery_l_s_t_m_a958f97cfc2d5d6813067a62cef614e68}\index{ai\_analysis.ForgeryLSTM@{ai\_analysis.ForgeryLSTM}!fc@{fc}}
+\index{fc@{fc}!ai\_analysis.ForgeryLSTM@{ai\_analysis.ForgeryLSTM}}
+\doxysubsubsection{\texorpdfstring{fc}{fc}}
+{\footnotesize\ttfamily \label{classai__analysis_1_1_forgery_l_s_t_m_a958f97cfc2d5d6813067a62cef614e68} 
+ai\+\_\+analysis.\+Forgery\+LSTM.\+fc = nn.\+Linear(128, 1)}
+
+\Hypertarget{classai__analysis_1_1_forgery_l_s_t_m_a12072ad9bb157c0042687cc2139f9e19}\index{ai\_analysis.ForgeryLSTM@{ai\_analysis.ForgeryLSTM}!lstm@{lstm}}
+\index{lstm@{lstm}!ai\_analysis.ForgeryLSTM@{ai\_analysis.ForgeryLSTM}}
+\doxysubsubsection{\texorpdfstring{lstm}{lstm}}
+{\footnotesize\ttfamily \label{classai__analysis_1_1_forgery_l_s_t_m_a12072ad9bb157c0042687cc2139f9e19} 
+ai\+\_\+analysis.\+Forgery\+LSTM.\+lstm = nn.\+LSTM(input\+\_\+size=512, hidden\+\_\+size=128, batch\+\_\+first=True)}
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{ai__analysis_8py}{ai\+\_\+analysis.\+py}}\end{DoxyCompactItemize}

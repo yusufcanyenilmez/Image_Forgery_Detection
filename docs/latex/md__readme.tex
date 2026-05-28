@@ -1,0 +1,300 @@
+\chapter{🛡️ Görüntü Sahteciliği Tespit Sistemi (Image Forgery Detection) }
+\hypertarget{md__readme}{}\label{md__readme}\index{🛡️ Görüntü Sahteciliği Tespit Sistemi (Image Forgery Detection)@{🛡️ Görüntü Sahteciliği Tespit Sistemi (Image Forgery Detection)}}
+\label{md__readme_autotoc_md13}%
+\Hypertarget{md__readme_autotoc_md13}%
+
+
+~\newline
+
+
+      
+
+~\newline
+
+
+\begin{quote}
+Bu proje, bir dijital görüntünün manipüle edilip edilmediğini hem {\bfseries{Geleneksel Bilgisayarlı Görü (Computer Vision)}} hem de {\bfseries{Derin Öğrenme (AI)}} tekniklerini kullanarak analiz eden bir web uygulamasıdır. \end{quote}
+
+
+\begin{quote}
+Sistem özellikle {\bfseries{Copy-\/\+Move (Kopyala-\/\+Yapıştır) sahteciliğine aday bölgeleri tespit etmeye odaklanır.}} \end{quote}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md15}{}\doxysection{\texorpdfstring{🎯 Projenin Amacı}{🎯 Projenin Amacı}}\label{md__readme_autotoc_md15}
+Bu sistem:\+
+
+
+\begin{DoxyItemize}
+\item Görüntü içerisindeki {\bfseries{tekrar eden yapısal bölgeleri}}
+\item Olası {\bfseries{kopyalanmış (copy-\/move) alanları}}
+\item Ve piksel seviyesinde {\bfseries{anormallikleri}}
+\end{DoxyItemize}
+
+tespit ederek kullanıcıya {\bfseries{şüpheli bölgeleri görsel olarak sunar}}.
+
+⚠️ Not:\+ Sistem {\bfseries{kesin sahtecilik kararı vermez}}, bunun yerine {\bfseries{şüpheli bölgeleri (candidate regions)}} işaretler.
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md17}{}\doxysection{\texorpdfstring{🧠 Teknik Çalışma Prensibi}{🧠 Teknik Çalışma Prensibi}}\label{md__readme_autotoc_md17}
+Sistem iki farklı analiz katmanından oluşur:\+
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md19}{}\doxysubsection{\texorpdfstring{🔹 1. Geleneksel Bilgisayarlı Görü Analizi}{🔹 1. Geleneksel Bilgisayarlı Görü Analizi}}\label{md__readme_autotoc_md19}
+Kullanılan algoritmalar:\+
+
+
+\begin{DoxyItemize}
+\item SIFT
+\item SURF
+\item AKAZE
+\item ORB
+\end{DoxyItemize}
+
+Bu algoritmalar Computer Vision alanında kullanılan {\bfseries{feature-\/based yöntemlerdir}}.
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md21}{}\doxysubsubsection{\texorpdfstring{📌 Nasıl çalışır?}{📌 Nasıl çalışır?}}\label{md__readme_autotoc_md21}
+\hypertarget{md__readme_autotoc_md22}{}\doxysubsubsection{\texorpdfstring{1. Anahtar Nokta Tespiti (Keypoints)}{1. Anahtar Nokta Tespiti (Keypoints)}}\label{md__readme_autotoc_md22}
+Görüntüdeki karakteristik bölgeler bulunur:\+
+\begin{DoxyItemize}
+\item köşeler
+\item kenarlar
+\item texture değişimleri
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md24}{}\doxysubsubsection{\texorpdfstring{2. Descriptor (Betimleyici) Oluşturma}{2. Descriptor (Betimleyici) Oluşturma}}\label{md__readme_autotoc_md24}
+Her nokta için matematiksel bir "{}kimlik"{} çıkarılır.
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md26}{}\doxysubsubsection{\texorpdfstring{3. Eşleşme (Matching)}{3. Eşleşme (Matching)}}\label{md__readme_autotoc_md26}
+Aynı görüntü içindeki noktalar karşılaştırılır:\+
+
+
+\begin{DoxyItemize}
+\item KNN (k=2) kullanılır
+\item Lowe\textquotesingle{}s Ratio Test ile zayıf eşleşmeler elenir
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md28}{}\doxysubsubsection{\texorpdfstring{4. Mekansal Filtreleme}{4. Mekansal Filtreleme}}\label{md__readme_autotoc_md28}
+
+\begin{DoxyItemize}
+\item Noktalar birbirine çok yakınsa elenir
+\item Minimum mesafe:\+ {\bfseries{50 piksel}}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md30}{}\doxysubsubsection{\texorpdfstring{5. Geometrik Tutarlılık Analizi}{5. Geometrik Tutarlılık Analizi}}\label{md__readme_autotoc_md30}
+En kritik adım:\+
+
+
+\begin{DoxyItemize}
+\item Eşleşmelerin vektörleri hesaplanır
+\item Median vektör bulunur
+\item Sadece bu vektöre yakın olanlar seçilir
+\end{DoxyItemize}
+
+👉 Bu, copy-\/move sahteciliğinin temel özelliğidir:\+
+
+\begin{quote}
+“\+Tüm kopyalanan bölge aynı yönde ve aynı miktarda taşınır” \end{quote}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md32}{}\doxysubsubsection{\texorpdfstring{📊 Sonuç Mantığı}{📊 Sonuç Mantığı}}\label{md__readme_autotoc_md32}
+
+\begin{DoxyItemize}
+\item Eğer {\bfseries{10\textquotesingle{}dan fazla tutarlı eşleşme}} varsa:\+
+\end{DoxyItemize}
+
+👉 Görüntü {\bfseries{"{}Şüpheli"{}}} olarak işaretlenir
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md34}{}\doxysubsubsection{\texorpdfstring{🎨 Görselleştirme}{🎨 Görselleştirme}}\label{md__readme_autotoc_md34}
+Sistem:\+
+
+
+\begin{DoxyItemize}
+\item eşleşen noktaları
+\item bağlantı çizgilerini
+\item kaynak ve hedef bölgeleri
+\end{DoxyItemize}
+
+görsel olarak işaretler:\+
+
+
+\begin{DoxyItemize}
+\item 🔴 kaynak noktalar
+\item 🔵 hedef noktalar
+\item 🟢 eşleşme çizgileri
+\item 🟣 /\+ 🟡 bounding box alanları
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md36}{}\doxysubsection{\texorpdfstring{🤖 2. Yapay Zeka Analizi (CNN + LSTM)}{🤖 2. Yapay Zeka Analizi (CNN + LSTM)}}\label{md__readme_autotoc_md36}
+Bu katman:\+
+
+
+\begin{DoxyItemize}
+\item insan gözünün fark edemediği
+\item piksel seviyesindeki anomalileri
+\end{DoxyItemize}
+
+tespit etmeye çalışır.
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md38}{}\doxysubsubsection{\texorpdfstring{Kullanılan Model:\+}{Kullanılan Model:\+}}\label{md__readme_autotoc_md38}
+
+\begin{DoxyItemize}
+\item Res\+Net-\/18 (CNN)
+\item LSTM (sequence modeling)
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md40}{}\doxysubsubsection{\texorpdfstring{📌 Dataset Bilgisi}{📌 Dataset Bilgisi}}\label{md__readme_autotoc_md40}
+{\bfseries{AI modeli}}:\+
+
+
+\begin{DoxyItemize}
+\item Deepfake (yüz manipülasyonu) dataseti kullanılarak eğitilmiştir.
+\item Dataset {\bfseries{Kaggle}} platformundan alınmıştır
+\item Dataset Link:\+ \href{https://www.kaggle.com/datasets/undersc0re/fake-vs-real-face-classification}{\texttt{https:\+/\+/\+www.\+kaggle.\+com/\+datasets/\+undersc0re/\+fake-\/vs-\/real-\/face-\/classification}}
+\end{DoxyItemize}
+
+~\newline
+
+
+{\bfseries{⚠️ Önemli Not}}:\+
+
+Bu dataset:\+
+
+
+\begin{DoxyItemize}
+\item Yüz sahteciliği (deepfake) odaklıdır.
+\item Copy-\/move sahteciliği için özel olarak üretilmemiştir.
+\end{DoxyItemize}
+
+~\newline
+
+
+👉 Bu nedenle AI modeli:\+
+
+
+\begin{DoxyItemize}
+\item Copy-\/move tespitinde destekleyici sinyal üretir.
+\item Ancak tek başına kesin karar vermez.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md42}{}\doxysubsubsection{\texorpdfstring{📌 Çalışma Adımları}{📌 Çalışma Adımları}}\label{md__readme_autotoc_md42}
+
+\begin{DoxyEnumerate}
+\item Görüntü normalize edilir (224x224)
+\item CNN ile feature çıkarılır
+\item Feature vektörü LSTM’e verilir
+\item CNN + LSTM skorları birleştirilir
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md44}{}\doxysubsubsection{\texorpdfstring{📊 AI Skoru}{📊 AI Skoru}}\label{md__readme_autotoc_md44}
+
+\begin{DoxyItemize}
+\item 0 → Temiz
+\item 1 → Sahte
+\end{DoxyItemize}
+
+\begin{quote}
+\%50 üzeri → Şüpheli kabul edilir \end{quote}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md46}{}\doxysection{\texorpdfstring{🧩 Hibrit Karar Mekanizması}{🧩 Hibrit Karar Mekanizması}}\label{md__readme_autotoc_md46}
+Final karar:\+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Şüpheli\ =\ (Traditional)\ OR\ (AI)}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md48}{}\doxysubsection{\texorpdfstring{🛠️ Proje Mimarisi}{🛠️ Proje Mimarisi}}\label{md__readme_autotoc_md48}
+Proje, yazılım mühendisliği prensiplerine uygun olarak modüler bir yapıda geliştirilmiştir:\+ ~\newline
+
+
+~\newline
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{📦\ Image\ Forgery\ Detection}
+\DoxyCodeLine{│}
+\DoxyCodeLine{├──\ 📂\ main.py}
+\DoxyCodeLine{├──\ 📂\ traditional\_analysis.py}
+\DoxyCodeLine{├──\ 📂\ ai\_analysis.py}
+\DoxyCodeLine{├──\ 📂\ train\_model.py}
+\DoxyCodeLine{└──\ 📂\ forgery-\/ui/}
+
+\end{DoxyCode}
+ ~\newline
+
+
+{\bfseries{\doxylink{_main_8py}{main.\+py}}}:\+ Fast\+API tabanlı backend sunucusudur. İstekleri karşılar ve analiz sürecini yönetir. ~\newline
+
+
+{\bfseries{\doxylink{traditional__analysis_8py}{traditional\+\_\+analysis.\+py}}}:\+ SIFT, SURF, AKAZE ve ORB gibi Open\+CV tabanlı algoritmaların motorudur. ~\newline
+
+
+{\bfseries{\doxylink{ai__analysis_8py}{ai\+\_\+analysis.\+py}}}:\+ Py\+Torch kullanarak Res\+Net18 (CNN) ve LSTM modelleri ile derin analiz yapar. ~\newline
+
+
+{\bfseries{\doxylink{train__model_8py}{train\+\_\+model.\+py}}}:\+ Res\+Net model eğitimini yapar.
+
+{\bfseries{forgery-\/ui/\+}}:\+ Kullanıcı dostu React tabanlı arayüzdür.
+
+\DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md50}{}\doxysubsection{\texorpdfstring{🚀 Kurulum ve Çalıştırma}{🚀 Kurulum ve Çalıştırma}}\label{md__readme_autotoc_md50}
+\begin{quote}
+Gereksinimler:\+
+\begin{DoxyItemize}
+\item Python 3.\+9+
+\item Node.\+js. 
+\end{DoxyItemize}\end{quote}
+
+
+~\newline
+
+
+🐍 Backend:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{pip\ install\ -\/r\ requirements.txt}
+\DoxyCodeLine{python\ main.py}
+
+\end{DoxyCode}
+
+
+~\newline
+
+
+⚛️ Frontend:\+ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{cd\ forgery-\/ui}
+\DoxyCodeLine{npm\ install}
+\DoxyCodeLine{npm\ start}
+
+\end{DoxyCode}
+ \DoxyHorRuler{0}
+\hypertarget{md__readme_autotoc_md52}{}\doxysubsection{\texorpdfstring{👨‍💻 Geliştirici Notu}{👨‍💻 Geliştirici Notu}}\label{md__readme_autotoc_md52}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Bu\ proje:}
+\DoxyCodeLine{}
+\DoxyCodeLine{-\/\ eğitim\ amaçlıdır}
+\DoxyCodeLine{-\/\ explainable\ AI\ yaklaşımı\ içerir}
+\DoxyCodeLine{-\/\ görsel\ analiz\ sistemlerinin\ temelini\ öğretir}
+
+\end{DoxyCode}
+ 

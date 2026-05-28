@@ -1,0 +1,167 @@
+\doxysection{train\+\_\+model Namespace Reference}
+\hypertarget{namespacetrain__model}{}\label{namespacetrain__model}\index{train\_model@{train\_model}}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a775cc8ec1a83df29836f24fe01127f31}{device}} = torch.\+device("{}cuda"{} if torch.\+cuda.\+is\+\_\+available() else "{}cpu"{})
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_ad3effe1cb203c1defbacdf6f81ace1be}{transform}}
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a6a2b21aecae7cb93a068d775d4fa0d18}{train\+\_\+dataset}}
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a64a9b8597f6890940c9134182996d964}{test\+\_\+dataset}}
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_ac41d9fa3c99e3c329950b29796fe3716}{train\+\_\+loader}} = Data\+Loader(\doxymbox{\hyperlink{namespacetrain__model_a6a2b21aecae7cb93a068d775d4fa0d18}{train\+\_\+dataset}}, batch\+\_\+size=16, shuffle=True)
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a23fae0e4d961d9e42f48f299b120c25e}{test\+\_\+loader}} = Data\+Loader(\doxymbox{\hyperlink{namespacetrain__model_a64a9b8597f6890940c9134182996d964}{test\+\_\+dataset}}, batch\+\_\+size=16)
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_ad9e022368d736e6b40a07b09b7ebf5db}{model}} = models.\+resnet18(weights=models.\+Res\+Net18\+\_\+\+Weights.\+DEFAULT)
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a23d04f393527317cf3200cc9537a856e}{fc}}
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a0e423209433587efbbb22a8cab9c936d}{criterion}} = nn.\+Cross\+Entropy\+Loss()
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_aac877892b38aa33aacd7ded87b774cd6}{optimizer}} = torch.\+optim.\+Adam(model.\+parameters(), lr=0.\+001)
+\item 
+int \doxymbox{\hyperlink{namespacetrain__model_ac19e10a370e08d947da7b8524abaac9c}{EPOCHS}} = 3
+\item 
+int \doxymbox{\hyperlink{namespacetrain__model_a6f76b2a97b7f44ef2ce712a5816beced}{running\+\_\+loss}} = 0
+\begin{DoxyCompactList}\small\item\em Model Eğitim Döngüsü \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{namespacetrain__model_a62ff2cf1b674a5fd215d8d9840de82dc}{images}} = images.\+to(\doxymbox{\hyperlink{namespacetrain__model_a775cc8ec1a83df29836f24fe01127f31}{device}})
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_ac7359b56d50566f4415fdad8df75afd2}{labels}} = labels.\+to(\doxymbox{\hyperlink{namespacetrain__model_a775cc8ec1a83df29836f24fe01127f31}{device}})
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a230a5977ea9e1f1cacd0fc96f381341f}{outputs}} = \doxymbox{\hyperlink{namespacetrain__model_ad9e022368d736e6b40a07b09b7ebf5db}{model}}(\doxymbox{\hyperlink{namespacetrain__model_a62ff2cf1b674a5fd215d8d9840de82dc}{images}})
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a54ee84e01d3549883f3123b40d1655aa}{loss}} = \doxymbox{\hyperlink{namespacetrain__model_a0e423209433587efbbb22a8cab9c936d}{criterion}}(\doxymbox{\hyperlink{namespacetrain__model_a230a5977ea9e1f1cacd0fc96f381341f}{outputs}}, \doxymbox{\hyperlink{namespacetrain__model_ac7359b56d50566f4415fdad8df75afd2}{labels}})
+\end{DoxyCompactItemize}
+
+
+\label{namespacetrain__model_doc-var-members}
+\Hypertarget{namespacetrain__model_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacetrain__model_a0e423209433587efbbb22a8cab9c936d}\index{train\_model@{train\_model}!criterion@{criterion}}
+\index{criterion@{criterion}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{criterion}{criterion}}
+{\footnotesize\ttfamily \label{namespacetrain__model_a0e423209433587efbbb22a8cab9c936d} 
+train\+\_\+model.\+criterion = nn.\+Cross\+Entropy\+Loss()}
+
+\Hypertarget{namespacetrain__model_a775cc8ec1a83df29836f24fe01127f31}\index{train\_model@{train\_model}!device@{device}}
+\index{device@{device}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{device}{device}}
+{\footnotesize\ttfamily \label{namespacetrain__model_a775cc8ec1a83df29836f24fe01127f31} 
+train\+\_\+model.\+device = torch.\+device("{}cuda"{} if torch.\+cuda.\+is\+\_\+available() else "{}cpu"{})}
+
+\Hypertarget{namespacetrain__model_ac19e10a370e08d947da7b8524abaac9c}\index{train\_model@{train\_model}!EPOCHS@{EPOCHS}}
+\index{EPOCHS@{EPOCHS}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{EPOCHS}{EPOCHS}}
+{\footnotesize\ttfamily \label{namespacetrain__model_ac19e10a370e08d947da7b8524abaac9c} 
+int train\+\_\+model.\+EPOCHS = 3}
+
+\Hypertarget{namespacetrain__model_a23d04f393527317cf3200cc9537a856e}\index{train\_model@{train\_model}!fc@{fc}}
+\index{fc@{fc}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{fc}{fc}}
+{\footnotesize\ttfamily \label{namespacetrain__model_a23d04f393527317cf3200cc9537a856e} 
+train\+\_\+model.\+fc}
+
+\Hypertarget{namespacetrain__model_a62ff2cf1b674a5fd215d8d9840de82dc}\index{train\_model@{train\_model}!images@{images}}
+\index{images@{images}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{images}{images}}
+{\footnotesize\ttfamily \label{namespacetrain__model_a62ff2cf1b674a5fd215d8d9840de82dc} 
+train\+\_\+model.\+images = images.\+to(\doxymbox{\hyperlink{namespacetrain__model_a775cc8ec1a83df29836f24fe01127f31}{device}})}
+
+\Hypertarget{namespacetrain__model_ac7359b56d50566f4415fdad8df75afd2}\index{train\_model@{train\_model}!labels@{labels}}
+\index{labels@{labels}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{labels}{labels}}
+{\footnotesize\ttfamily \label{namespacetrain__model_ac7359b56d50566f4415fdad8df75afd2} 
+train\+\_\+model.\+labels = labels.\+to(\doxymbox{\hyperlink{namespacetrain__model_a775cc8ec1a83df29836f24fe01127f31}{device}})}
+
+\Hypertarget{namespacetrain__model_a54ee84e01d3549883f3123b40d1655aa}\index{train\_model@{train\_model}!loss@{loss}}
+\index{loss@{loss}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{loss}{loss}}
+{\footnotesize\ttfamily \label{namespacetrain__model_a54ee84e01d3549883f3123b40d1655aa} 
+train\+\_\+model.\+loss = \doxymbox{\hyperlink{namespacetrain__model_a0e423209433587efbbb22a8cab9c936d}{criterion}}(\doxymbox{\hyperlink{namespacetrain__model_a230a5977ea9e1f1cacd0fc96f381341f}{outputs}}, \doxymbox{\hyperlink{namespacetrain__model_ac7359b56d50566f4415fdad8df75afd2}{labels}})}
+
+\Hypertarget{namespacetrain__model_ad9e022368d736e6b40a07b09b7ebf5db}\index{train\_model@{train\_model}!model@{model}}
+\index{model@{model}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily \label{namespacetrain__model_ad9e022368d736e6b40a07b09b7ebf5db} 
+train\+\_\+model.\+model = models.\+resnet18(weights=models.\+Res\+Net18\+\_\+\+Weights.\+DEFAULT)}
+
+\Hypertarget{namespacetrain__model_aac877892b38aa33aacd7ded87b774cd6}\index{train\_model@{train\_model}!optimizer@{optimizer}}
+\index{optimizer@{optimizer}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{optimizer}{optimizer}}
+{\footnotesize\ttfamily \label{namespacetrain__model_aac877892b38aa33aacd7ded87b774cd6} 
+train\+\_\+model.\+optimizer = torch.\+optim.\+Adam(model.\+parameters(), lr=0.\+001)}
+
+\Hypertarget{namespacetrain__model_a230a5977ea9e1f1cacd0fc96f381341f}\index{train\_model@{train\_model}!outputs@{outputs}}
+\index{outputs@{outputs}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{outputs}{outputs}}
+{\footnotesize\ttfamily \label{namespacetrain__model_a230a5977ea9e1f1cacd0fc96f381341f} 
+train\+\_\+model.\+outputs = \doxymbox{\hyperlink{namespacetrain__model_ad9e022368d736e6b40a07b09b7ebf5db}{model}}(\doxymbox{\hyperlink{namespacetrain__model_a62ff2cf1b674a5fd215d8d9840de82dc}{images}})}
+
+\Hypertarget{namespacetrain__model_a6f76b2a97b7f44ef2ce712a5816beced}\index{train\_model@{train\_model}!running\_loss@{running\_loss}}
+\index{running\_loss@{running\_loss}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{running\_loss}{running\_loss}}
+{\footnotesize\ttfamily \label{namespacetrain__model_a6f76b2a97b7f44ef2ce712a5816beced} 
+int train\+\_\+model.\+running\+\_\+loss = 0}
+
+
+
+Model Eğitim Döngüsü 
+
+Belirlenen EPOCHS değeri kadar tüm veri setini ileri ve geri besleme (Backpropagation) yöntemleriyle tarayarak {\ttfamily forgery\+\_\+model.\+pth} dosyasını üretir. \Hypertarget{namespacetrain__model_a64a9b8597f6890940c9134182996d964}\index{train\_model@{train\_model}!test\_dataset@{test\_dataset}}
+\index{test\_dataset@{test\_dataset}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{test\_dataset}{test\_dataset}}
+{\footnotesize\ttfamily \label{namespacetrain__model_a64a9b8597f6890940c9134182996d964} 
+train\+\_\+model.\+test\+\_\+dataset}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ datasets.ImageFolder(}
+\DoxyCodeLine{\ \ \ \ root=\textcolor{stringliteral}{"{}dataset/test"{}},}
+\DoxyCodeLine{\ \ \ \ transform=transform}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespacetrain__model_a23fae0e4d961d9e42f48f299b120c25e}\index{train\_model@{train\_model}!test\_loader@{test\_loader}}
+\index{test\_loader@{test\_loader}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{test\_loader}{test\_loader}}
+{\footnotesize\ttfamily \label{namespacetrain__model_a23fae0e4d961d9e42f48f299b120c25e} 
+train\+\_\+model.\+test\+\_\+loader = Data\+Loader(\doxymbox{\hyperlink{namespacetrain__model_a64a9b8597f6890940c9134182996d964}{test\+\_\+dataset}}, batch\+\_\+size=16)}
+
+\Hypertarget{namespacetrain__model_a6a2b21aecae7cb93a068d775d4fa0d18}\index{train\_model@{train\_model}!train\_dataset@{train\_dataset}}
+\index{train\_dataset@{train\_dataset}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{train\_dataset}{train\_dataset}}
+{\footnotesize\ttfamily \label{namespacetrain__model_a6a2b21aecae7cb93a068d775d4fa0d18} 
+train\+\_\+model.\+train\+\_\+dataset}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ datasets.ImageFolder(}
+\DoxyCodeLine{\ \ \ \ root=\textcolor{stringliteral}{"{}dataset/train"{}},}
+\DoxyCodeLine{\ \ \ \ transform=transform}
+\DoxyCodeLine{)}
+
+\end{DoxyCode}
+\Hypertarget{namespacetrain__model_ac41d9fa3c99e3c329950b29796fe3716}\index{train\_model@{train\_model}!train\_loader@{train\_loader}}
+\index{train\_loader@{train\_loader}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{train\_loader}{train\_loader}}
+{\footnotesize\ttfamily \label{namespacetrain__model_ac41d9fa3c99e3c329950b29796fe3716} 
+train\+\_\+model.\+train\+\_\+loader = Data\+Loader(\doxymbox{\hyperlink{namespacetrain__model_a6a2b21aecae7cb93a068d775d4fa0d18}{train\+\_\+dataset}}, batch\+\_\+size=16, shuffle=True)}
+
+\Hypertarget{namespacetrain__model_ad3effe1cb203c1defbacdf6f81ace1be}\index{train\_model@{train\_model}!transform@{transform}}
+\index{transform@{transform}!train\_model@{train\_model}}
+\doxysubsubsection{\texorpdfstring{transform}{transform}}
+{\footnotesize\ttfamily \label{namespacetrain__model_ad3effe1cb203c1defbacdf6f81ace1be} 
+train\+\_\+model.\+transform}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ transforms.Compose([}
+\DoxyCodeLine{\ \ \ \ transforms.Resize((224,\ 224)),}
+\DoxyCodeLine{\ \ \ \ transforms.ToTensor(),}
+\DoxyCodeLine{\ \ \ \ transforms.Normalize(mean=[0.485,\ 0.456,\ 0.406],\ std=[0.229,\ 0.224,\ 0.225])\ \textcolor{comment}{\#normalizasyon}}
+\DoxyCodeLine{])}
+
+\end{DoxyCode}

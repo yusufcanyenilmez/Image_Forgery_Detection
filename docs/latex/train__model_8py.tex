@@ -1,0 +1,42 @@
+\doxysection{train\+\_\+model.\+py File Reference}
+\hypertarget{train__model_8py}{}\label{train__model_8py}\index{train\_model.py@{train\_model.py}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \doxymbox{\hyperlink{namespacetrain__model}{train\+\_\+model}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a775cc8ec1a83df29836f24fe01127f31}{train\+\_\+model.\+device}} = torch.\+device("{}cuda"{} if torch.\+cuda.\+is\+\_\+available() else "{}cpu"{})
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_ad3effe1cb203c1defbacdf6f81ace1be}{train\+\_\+model.\+transform}}
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a6a2b21aecae7cb93a068d775d4fa0d18}{train\+\_\+model.\+train\+\_\+dataset}}
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a64a9b8597f6890940c9134182996d964}{train\+\_\+model.\+test\+\_\+dataset}}
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_ac41d9fa3c99e3c329950b29796fe3716}{train\+\_\+model.\+train\+\_\+loader}} = Data\+Loader(\doxymbox{\hyperlink{namespacetrain__model_a6a2b21aecae7cb93a068d775d4fa0d18}{train\+\_\+dataset}}, batch\+\_\+size=16, shuffle=True)
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a23fae0e4d961d9e42f48f299b120c25e}{train\+\_\+model.\+test\+\_\+loader}} = Data\+Loader(\doxymbox{\hyperlink{namespacetrain__model_a64a9b8597f6890940c9134182996d964}{test\+\_\+dataset}}, batch\+\_\+size=16)
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_ad9e022368d736e6b40a07b09b7ebf5db}{train\+\_\+model.\+model}} = models.\+resnet18(weights=models.\+Res\+Net18\+\_\+\+Weights.\+DEFAULT)
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a23d04f393527317cf3200cc9537a856e}{train\+\_\+model.\+fc}}
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a0e423209433587efbbb22a8cab9c936d}{train\+\_\+model.\+criterion}} = nn.\+Cross\+Entropy\+Loss()
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_aac877892b38aa33aacd7ded87b774cd6}{train\+\_\+model.\+optimizer}} = torch.\+optim.\+Adam(model.\+parameters(), lr=0.\+001)
+\item 
+int \doxymbox{\hyperlink{namespacetrain__model_ac19e10a370e08d947da7b8524abaac9c}{train\+\_\+model.\+EPOCHS}} = 3
+\item 
+int \doxymbox{\hyperlink{namespacetrain__model_a6f76b2a97b7f44ef2ce712a5816beced}{train\+\_\+model.\+running\+\_\+loss}} = 0
+\begin{DoxyCompactList}\small\item\em Model Eğitim Döngüsü \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{namespacetrain__model_a62ff2cf1b674a5fd215d8d9840de82dc}{train\+\_\+model.\+images}} = images.\+to(\doxymbox{\hyperlink{namespacetrain__model_a775cc8ec1a83df29836f24fe01127f31}{device}})
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_ac7359b56d50566f4415fdad8df75afd2}{train\+\_\+model.\+labels}} = labels.\+to(\doxymbox{\hyperlink{namespacetrain__model_a775cc8ec1a83df29836f24fe01127f31}{device}})
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a230a5977ea9e1f1cacd0fc96f381341f}{train\+\_\+model.\+outputs}} = \doxymbox{\hyperlink{namespacetrain__model_ad9e022368d736e6b40a07b09b7ebf5db}{model}}(\doxymbox{\hyperlink{namespacetrain__model_a62ff2cf1b674a5fd215d8d9840de82dc}{images}})
+\item 
+\doxymbox{\hyperlink{namespacetrain__model_a54ee84e01d3549883f3123b40d1655aa}{train\+\_\+model.\+loss}} = \doxymbox{\hyperlink{namespacetrain__model_a0e423209433587efbbb22a8cab9c936d}{criterion}}(\doxymbox{\hyperlink{namespacetrain__model_a230a5977ea9e1f1cacd0fc96f381341f}{outputs}}, \doxymbox{\hyperlink{namespacetrain__model_ac7359b56d50566f4415fdad8df75afd2}{labels}})
+\end{DoxyCompactItemize}

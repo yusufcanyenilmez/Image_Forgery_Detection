@@ -7,6 +7,11 @@ import base64
 # Algoritma seçimi
 # -------------------------------
 def get_detector(algo_name):
+    """
+        @brief Kullanıcının seçtiği algoritmaya göre ilgili OpenCV nesnesini başlatır.
+        @param algo_name Analiz için seçilen algoritma adı (SIFT, SURF, AKAZE, ORB).
+        @return Başlatılan OpenCV dedektör nesnesi veya hata durumunda None.
+    """
     algo = algo_name.upper()
 
     try:
@@ -39,6 +44,14 @@ def get_detector(algo_name):
 # Forgery match bulma (KNN + vektör kümeleme)
 # -------------------------------
 def find_forgery_matches(kp, desc, algorithm):
+    """
+        @brief Anahtar noktalar ve betimleyiciler üzerinden kopyala-yapıştır sahteciliği araması yapar.
+        @details Lowe's Ratio Test ve geometrik vektör kümeleme kullanarak doğal benzerlikleri eler.
+        @param kp Görüntüden elde edilen anahtar noktalar (Keypoints).
+        @param desc Anahtar noktalara ait betimleyiciler (Descriptors).
+        @param algorithm Kullanılan algoritma türü.
+        @return Eşleşen şüpheli noktaların çiftleri ve ortalama taşıma vektörü.
+    """
     if desc is None or len(desc) < 20:
         return [], None
 
@@ -90,6 +103,16 @@ def find_forgery_matches(kp, desc, algorithm):
 # Ana analiz fonksiyonu
 # -------------------------------
 def run_traditional_analysis(img_cv, algorithm):
+    """
+        @brief Geleneksel bilgisayarlı görü analiz sürecini baştan sona yöneten ana modül fonksiyonudur.
+        @details Görseli gri tona dönüştürür, öznitelik tespiti yapar, içsel eşleştirme fonksiyonunu tetikler ve eğer kural tabanlı eşik (10 eşleşme) aşılırsa durumu manipülasyon olarak raporlar.
+        @param img_cv OpenCV formatındaki kaynak BGR görüntü matrisi.
+        @param algorithm Kullanılacak algoritma türü ("SIFT", "SURF", vb.).
+        @return len(kp) Tespit edilen toplam anahtar nokta sayısı.
+        @return len(matches) Doğrulanmış sahtecilik eşleşme çizgi sayısı.
+        @return is_forged Görüntünün sahte olup olmadığını belirten boolean bayrak.
+        @return vis_image Base64 formatına kodlanmış, üzerinde kanıt çizgileri olan jpg resim string'i.
+        """
     detector = get_detector(algorithm)
 
     if detector is None:
@@ -114,6 +137,13 @@ def run_traditional_analysis(img_cv, algorithm):
 # Görselleştirme (Kanıt Çizimi)
 # -------------------------------
 def draw_matches(img, matches):
+    """
+        @brief Tespit edilen manipülasyon kanıtlarını görselleştirerek kullanıcı ekranına hazır hale getirir.
+        @details Eşleşen kaynak ve hedef pikseller arasına yeşil adli bilişim çizgileri çizer. Sınır belirleme algoritmasıyla (Bounding Rect) kaynak bölgeyi mor, hedef klon bölgeyi sarı kare içerisine alır.
+        @param img Üzerine çizim yapılacak ham kaynak görüntü.
+        @param matches Çizilecek doğrulanmış nokta çiftlerinin koordinat listesi.
+        @return base64_str Web arayüzünde doğrudan `<img src='data:image...'/>` şeklinde gösterilmeye hazır base64 string verisi.
+        """
     img_copy = img.copy()
     if matches is None or len(matches) == 0:
         return None

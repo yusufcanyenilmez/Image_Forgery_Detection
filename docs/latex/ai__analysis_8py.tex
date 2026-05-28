@@ -1,0 +1,34 @@
+\doxysection{ai\+\_\+analysis.\+py File Reference}
+\hypertarget{ai__analysis_8py}{}\label{ai__analysis_8py}\index{ai\_analysis.py@{ai\_analysis.py}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classai__analysis_1_1_forgery_l_s_t_m}{ai\+\_\+analysis.\+Forgery\+LSTM}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \doxymbox{\hyperlink{namespaceai__analysis}{ai\+\_\+analysis}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceai__analysis_ac3e6b96010536236abc0aba857870d8f}{ai\+\_\+analysis.\+run\+\_\+ai\+\_\+analysis}} (img\+\_\+pil)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceai__analysis_a255d7d824f7ba14cae59db58fb529c77}{ai\+\_\+analysis.\+device}} = torch.\+device("{}cuda"{} if torch.\+cuda.\+is\+\_\+available() else "{}cpu"{})
+\item 
+\doxymbox{\hyperlink{namespaceai__analysis_aea78f12313e12c0c50cd04a27ddf5b37}{ai\+\_\+analysis.\+resnet}} = models.\+resnet18()
+\item 
+\doxymbox{\hyperlink{namespaceai__analysis_a89585f6fc96092e488bd8ef25634e7a9}{ai\+\_\+analysis.\+fc}}
+\item 
+str \doxymbox{\hyperlink{namespaceai__analysis_a59d3d4a4117ede8ace5dd29ed63d91ea}{ai\+\_\+analysis.\+model\+\_\+path}} = "{}forgery\+\_\+model.\+pth"{}
+\item 
+\doxymbox{\hyperlink{namespaceai__analysis_a3ecd3f79024f653c0c46b01281876eda}{ai\+\_\+analysis.\+cnn\+\_\+model}} = nn.\+Sequential(\texorpdfstring{$\ast$}{*}(list(resnet.\+children())\+[:\+-\/1]\+))
+\item 
+\doxymbox{\hyperlink{namespaceai__analysis_a5a6df6a22424e19c59ec0864d78a4f9a}{ai\+\_\+analysis.\+lstm\+\_\+model}} = \doxymbox{\hyperlink{classai__analysis_1_1_forgery_l_s_t_m}{Forgery\+LSTM}}().to(\doxymbox{\hyperlink{namespaceai__analysis_a255d7d824f7ba14cae59db58fb529c77}{device}})
+\item 
+\doxymbox{\hyperlink{namespaceai__analysis_a86e66e5cb68341810bf6884c97c5cbe0}{ai\+\_\+analysis.\+transform}}
+\end{DoxyCompactItemize}

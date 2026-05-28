@@ -1,0 +1,15 @@
+digraph "traditional_analysis.run_traditional_analysis"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="traditional_analysis.run\l_traditional_analysis",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="traditional_analysis.draw\l_matches",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacetraditional__analysis.html#a4022774b2a566adbd500675afe07360a",tooltip=" "];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="traditional_analysis.find\l_forgery_matches",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacetraditional__analysis.html#a051dd9503605941639b6e3f5a81424ca",tooltip=" "];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="traditional_analysis.get\l_detector",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$namespacetraditional__analysis.html#a286bc077e9bc13c0da2e1ae86ee37147",tooltip=" "];
+}

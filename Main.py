@@ -9,6 +9,12 @@ from PIL import Image
 from traditional_analysis import run_traditional_analysis
 from ai_analysis import run_ai_analysis
 
+##
+# @mainpage Görüntü Sahteciliği Tespit Sistemi API Dökümantasyonu
+# @section intro_sec Giriş
+# Bu proje, dijital görüntüler üzerindeki manipülasyonları ve Copy-Move sahteciliklerini
+# geleneksel bilgisayarlı görü ve derin öğrenme hibrit mimarisiyle tespit eder.
+#
 
 app = FastAPI(title="Image Forgery Detection API", version="1.0.0")
 

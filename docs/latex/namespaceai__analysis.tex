@@ -1,0 +1,105 @@
+\doxysection{ai\+\_\+analysis Namespace Reference}
+\hypertarget{namespaceai__analysis}{}\label{namespaceai__analysis}\index{ai\_analysis@{ai\_analysis}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{classai__analysis_1_1_forgery_l_s_t_m}{Forgery\+LSTM}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceai__analysis_ac3e6b96010536236abc0aba857870d8f}{run\+\_\+ai\+\_\+analysis}} (img\+\_\+pil)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceai__analysis_a255d7d824f7ba14cae59db58fb529c77}{device}} = torch.\+device("{}cuda"{} if torch.\+cuda.\+is\+\_\+available() else "{}cpu"{})
+\item 
+\doxymbox{\hyperlink{namespaceai__analysis_aea78f12313e12c0c50cd04a27ddf5b37}{resnet}} = models.\+resnet18()
+\item 
+\doxymbox{\hyperlink{namespaceai__analysis_a89585f6fc96092e488bd8ef25634e7a9}{fc}}
+\item 
+str \doxymbox{\hyperlink{namespaceai__analysis_a59d3d4a4117ede8ace5dd29ed63d91ea}{model\+\_\+path}} = "{}forgery\+\_\+model.\+pth"{}
+\item 
+\doxymbox{\hyperlink{namespaceai__analysis_a3ecd3f79024f653c0c46b01281876eda}{cnn\+\_\+model}} = nn.\+Sequential(\texorpdfstring{$\ast$}{*}(list(resnet.\+children())\+[:\+-\/1]\+))
+\item 
+\doxymbox{\hyperlink{namespaceai__analysis_a5a6df6a22424e19c59ec0864d78a4f9a}{lstm\+\_\+model}} = \doxymbox{\hyperlink{classai__analysis_1_1_forgery_l_s_t_m}{Forgery\+LSTM}}().to(\doxymbox{\hyperlink{namespaceai__analysis_a255d7d824f7ba14cae59db58fb529c77}{device}})
+\item 
+\doxymbox{\hyperlink{namespaceai__analysis_a86e66e5cb68341810bf6884c97c5cbe0}{transform}}
+\end{DoxyCompactItemize}
+
+
+\label{namespaceai__analysis_doc-func-members}
+\Hypertarget{namespaceai__analysis_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceai__analysis_ac3e6b96010536236abc0aba857870d8f}\index{ai\_analysis@{ai\_analysis}!run\_ai\_analysis@{run\_ai\_analysis}}
+\index{run\_ai\_analysis@{run\_ai\_analysis}!ai\_analysis@{ai\_analysis}}
+\doxysubsubsection{\texorpdfstring{run\_ai\_analysis()}{run\_ai\_analysis()}}
+{\footnotesize\ttfamily \label{namespaceai__analysis_ac3e6b96010536236abc0aba857870d8f} 
+run\+\_\+ai\+\_\+analysis (\begin{DoxyParamCaption}\item[{}]{img\+\_\+pil}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Derin öğrenme (CNN + LSTM) hibrit mimarisi ile görselin manipülasyon skorunu hesaplar.
+    @details PIL formatında gelen görseli ResNet standartlarına göre normalize eder, ardından
+             eğitilmiş ağırlıklar üzerinden olasılık değerlerini ve ardışık katmanlardan LSTM
+             özniteliklerini çıkararak füzyon bir güven skoru üretir.
+    @param img_pil PIL kütüphanesi formatında okunmuş RGB giriş görseli.
+    @return final_score İki modelin ortak kararı olan nihai anomali skoru yüzdesi.
+    @return status Skorun %50 eşik değerini aşıp aşmadığını belirten boolean durum bilgisi.
+\end{DoxyVerb}
+ 
+
+\label{namespaceai__analysis_doc-var-members}
+\Hypertarget{namespaceai__analysis_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespaceai__analysis_a3ecd3f79024f653c0c46b01281876eda}\index{ai\_analysis@{ai\_analysis}!cnn\_model@{cnn\_model}}
+\index{cnn\_model@{cnn\_model}!ai\_analysis@{ai\_analysis}}
+\doxysubsubsection{\texorpdfstring{cnn\_model}{cnn\_model}}
+{\footnotesize\ttfamily \label{namespaceai__analysis_a3ecd3f79024f653c0c46b01281876eda} 
+ai\+\_\+analysis.\+cnn\+\_\+model = nn.\+Sequential(\texorpdfstring{$\ast$}{*}(list(resnet.\+children())\+[:\+-\/1]\+))}
+
+\Hypertarget{namespaceai__analysis_a255d7d824f7ba14cae59db58fb529c77}\index{ai\_analysis@{ai\_analysis}!device@{device}}
+\index{device@{device}!ai\_analysis@{ai\_analysis}}
+\doxysubsubsection{\texorpdfstring{device}{device}}
+{\footnotesize\ttfamily \label{namespaceai__analysis_a255d7d824f7ba14cae59db58fb529c77} 
+ai\+\_\+analysis.\+device = torch.\+device("{}cuda"{} if torch.\+cuda.\+is\+\_\+available() else "{}cpu"{})}
+
+\Hypertarget{namespaceai__analysis_a89585f6fc96092e488bd8ef25634e7a9}\index{ai\_analysis@{ai\_analysis}!fc@{fc}}
+\index{fc@{fc}!ai\_analysis@{ai\_analysis}}
+\doxysubsubsection{\texorpdfstring{fc}{fc}}
+{\footnotesize\ttfamily \label{namespaceai__analysis_a89585f6fc96092e488bd8ef25634e7a9} 
+ai\+\_\+analysis.\+fc}
+
+\Hypertarget{namespaceai__analysis_a5a6df6a22424e19c59ec0864d78a4f9a}\index{ai\_analysis@{ai\_analysis}!lstm\_model@{lstm\_model}}
+\index{lstm\_model@{lstm\_model}!ai\_analysis@{ai\_analysis}}
+\doxysubsubsection{\texorpdfstring{lstm\_model}{lstm\_model}}
+{\footnotesize\ttfamily \label{namespaceai__analysis_a5a6df6a22424e19c59ec0864d78a4f9a} 
+ai\+\_\+analysis.\+lstm\+\_\+model = \doxymbox{\hyperlink{classai__analysis_1_1_forgery_l_s_t_m}{Forgery\+LSTM}}().to(\doxymbox{\hyperlink{namespaceai__analysis_a255d7d824f7ba14cae59db58fb529c77}{device}})}
+
+\Hypertarget{namespaceai__analysis_a59d3d4a4117ede8ace5dd29ed63d91ea}\index{ai\_analysis@{ai\_analysis}!model\_path@{model\_path}}
+\index{model\_path@{model\_path}!ai\_analysis@{ai\_analysis}}
+\doxysubsubsection{\texorpdfstring{model\_path}{model\_path}}
+{\footnotesize\ttfamily \label{namespaceai__analysis_a59d3d4a4117ede8ace5dd29ed63d91ea} 
+str ai\+\_\+analysis.\+model\+\_\+path = "{}forgery\+\_\+model.\+pth"{}}
+
+\Hypertarget{namespaceai__analysis_aea78f12313e12c0c50cd04a27ddf5b37}\index{ai\_analysis@{ai\_analysis}!resnet@{resnet}}
+\index{resnet@{resnet}!ai\_analysis@{ai\_analysis}}
+\doxysubsubsection{\texorpdfstring{resnet}{resnet}}
+{\footnotesize\ttfamily \label{namespaceai__analysis_aea78f12313e12c0c50cd04a27ddf5b37} 
+ai\+\_\+analysis.\+resnet = models.\+resnet18()}
+
+\Hypertarget{namespaceai__analysis_a86e66e5cb68341810bf6884c97c5cbe0}\index{ai\_analysis@{ai\_analysis}!transform@{transform}}
+\index{transform@{transform}!ai\_analysis@{ai\_analysis}}
+\doxysubsubsection{\texorpdfstring{transform}{transform}}
+{\footnotesize\ttfamily \label{namespaceai__analysis_a86e66e5cb68341810bf6884c97c5cbe0} 
+ai\+\_\+analysis.\+transform}
+
+{\bfseries Initial value:\+}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \ transforms.Compose([}
+\DoxyCodeLine{\ \ \ \ transforms.Resize((224,\ 224)),}
+\DoxyCodeLine{\ \ \ \ transforms.ToTensor(),}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{\#\ ResNet\ standart\ normalizasyonu}}
+\DoxyCodeLine{\ \ \ \ transforms.Normalize(mean=[0.485,\ 0.456,\ 0.406],\ std=[0.229,\ 0.224,\ 0.225])}
+\DoxyCodeLine{])}
+
+\end{DoxyCode}

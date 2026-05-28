@@ -36,6 +36,11 @@ optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
 EPOCHS = 3
 
+##
+# @brief Model Eğitim Döngüsü
+# @details Belirlenen EPOCHS değeri kadar tüm veri setini ileri ve geri besleme (Backpropagation)
+#          yöntemleriyle tarayarak `forgery_model.pth` dosyasını üretir.
+#
 for epoch in range(EPOCHS):
 
     model.train()

@@ -1,0 +1,100 @@
+\doxysection{traditional\+\_\+analysis Namespace Reference}
+\hypertarget{namespacetraditional__analysis}{}\label{namespacetraditional__analysis}\index{traditional\_analysis@{traditional\_analysis}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacetraditional__analysis_a286bc077e9bc13c0da2e1ae86ee37147}{get\+\_\+detector}} (algo\+\_\+name)
+\item 
+\doxymbox{\hyperlink{namespacetraditional__analysis_a051dd9503605941639b6e3f5a81424ca}{find\+\_\+forgery\+\_\+matches}} (kp, desc, algorithm)
+\item 
+\doxymbox{\hyperlink{namespacetraditional__analysis_a4e46fbe8517f569ba4a5fe52b25f044a}{run\+\_\+traditional\+\_\+analysis}} (img\+\_\+cv, algorithm)
+\item 
+\doxymbox{\hyperlink{namespacetraditional__analysis_a4022774b2a566adbd500675afe07360a}{draw\+\_\+matches}} (img, matches)
+\end{DoxyCompactItemize}
+
+
+\label{namespacetraditional__analysis_doc-func-members}
+\Hypertarget{namespacetraditional__analysis_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacetraditional__analysis_a4022774b2a566adbd500675afe07360a}\index{traditional\_analysis@{traditional\_analysis}!draw\_matches@{draw\_matches}}
+\index{draw\_matches@{draw\_matches}!traditional\_analysis@{traditional\_analysis}}
+\doxysubsubsection{\texorpdfstring{draw\_matches()}{draw\_matches()}}
+{\footnotesize\ttfamily \label{namespacetraditional__analysis_a4022774b2a566adbd500675afe07360a} 
+draw\+\_\+matches (\begin{DoxyParamCaption}\item[{}]{img}{, }\item[{}]{matches}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Tespit edilen manipülasyon kanıtlarını görselleştirerek kullanıcı ekranına hazır hale getirir.
+@details Eşleşen kaynak ve hedef pikseller arasına yeşil adli bilişim çizgileri çizer. Sınır belirleme algoritmasıyla (Bounding Rect) kaynak bölgeyi mor, hedef klon bölgeyi sarı kare içerisine alır.
+@param img Üzerine çizim yapılacak ham kaynak görüntü.
+@param matches Çizilecek doğrulanmış nokta çiftlerinin koordinat listesi.
+@return base64_str Web arayüzünde doğrudan `<img src='data:image...'/>` şeklinde gösterilmeye hazır base64 string verisi.
+\end{DoxyVerb}
+ Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetraditional__analysis_a4022774b2a566adbd500675afe07360a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacetraditional__analysis_a051dd9503605941639b6e3f5a81424ca}\index{traditional\_analysis@{traditional\_analysis}!find\_forgery\_matches@{find\_forgery\_matches}}
+\index{find\_forgery\_matches@{find\_forgery\_matches}!traditional\_analysis@{traditional\_analysis}}
+\doxysubsubsection{\texorpdfstring{find\_forgery\_matches()}{find\_forgery\_matches()}}
+{\footnotesize\ttfamily \label{namespacetraditional__analysis_a051dd9503605941639b6e3f5a81424ca} 
+find\+\_\+forgery\+\_\+matches (\begin{DoxyParamCaption}\item[{}]{kp}{, }\item[{}]{desc}{, }\item[{}]{algorithm}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Anahtar noktalar ve betimleyiciler üzerinden kopyala-yapıştır sahteciliği araması yapar.
+    @details Lowe's Ratio Test ve geometrik vektör kümeleme kullanarak doğal benzerlikleri eler.
+    @param kp Görüntüden elde edilen anahtar noktalar (Keypoints).
+    @param desc Anahtar noktalara ait betimleyiciler (Descriptors).
+    @param algorithm Kullanılan algoritma türü.
+    @return Eşleşen şüpheli noktaların çiftleri ve ortalama taşıma vektörü.
+\end{DoxyVerb}
+ Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetraditional__analysis_a051dd9503605941639b6e3f5a81424ca_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacetraditional__analysis_a286bc077e9bc13c0da2e1ae86ee37147}\index{traditional\_analysis@{traditional\_analysis}!get\_detector@{get\_detector}}
+\index{get\_detector@{get\_detector}!traditional\_analysis@{traditional\_analysis}}
+\doxysubsubsection{\texorpdfstring{get\_detector()}{get\_detector()}}
+{\footnotesize\ttfamily \label{namespacetraditional__analysis_a286bc077e9bc13c0da2e1ae86ee37147} 
+get\+\_\+detector (\begin{DoxyParamCaption}\item[{}]{algo\+\_\+name}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    @brief Kullanıcının seçtiği algoritmaya göre ilgili OpenCV nesnesini başlatır.
+    @param algo_name Analiz için seçilen algoritma adı (SIFT, SURF, AKAZE, ORB).
+    @return Başlatılan OpenCV dedektör nesnesi veya hata durumunda None.
+\end{DoxyVerb}
+ Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{namespacetraditional__analysis_a286bc077e9bc13c0da2e1ae86ee37147_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacetraditional__analysis_a4e46fbe8517f569ba4a5fe52b25f044a}\index{traditional\_analysis@{traditional\_analysis}!run\_traditional\_analysis@{run\_traditional\_analysis}}
+\index{run\_traditional\_analysis@{run\_traditional\_analysis}!traditional\_analysis@{traditional\_analysis}}
+\doxysubsubsection{\texorpdfstring{run\_traditional\_analysis()}{run\_traditional\_analysis()}}
+{\footnotesize\ttfamily \label{namespacetraditional__analysis_a4e46fbe8517f569ba4a5fe52b25f044a} 
+run\+\_\+traditional\+\_\+analysis (\begin{DoxyParamCaption}\item[{}]{img\+\_\+cv}{, }\item[{}]{algorithm}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}@brief Geleneksel bilgisayarlı görü analiz sürecini baştan sona yöneten ana modül fonksiyonudur.
+@details Görseli gri tona dönüştürür, öznitelik tespiti yapar, içsel eşleştirme fonksiyonunu tetikler ve eğer kural tabanlı eşik (10 eşleşme) aşılırsa durumu manipülasyon olarak raporlar.
+@param img_cv OpenCV formatındaki kaynak BGR görüntü matrisi.
+@param algorithm Kullanılacak algoritma türü ("SIFT", "SURF", vb.).
+@return len(kp) Tespit edilen toplam anahtar nokta sayısı.
+@return len(matches) Doğrulanmış sahtecilik eşleşme çizgi sayısı.
+@return is_forged Görüntünün sahte olup olmadığını belirten boolean bayrak.
+@return vis_image Base64 formatına kodlanmış, üzerinde kanıt çizgileri olan jpg resim string'i.
+\end{DoxyVerb}
+ Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetraditional__analysis_a4e46fbe8517f569ba4a5fe52b25f044a_cgraph}
+\end{center}
+\end{figure}

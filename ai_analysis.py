@@ -31,12 +31,26 @@ cnn_model.eval()
 # LSTM Modeli
 # ==============================
 class ForgeryLSTM(nn.Module):
+    """
+        @brief CNN öznitelik haritalarını ardışık veri olarak inceleyen LSTM yapay sinir ağı sınıfı.
+        @details ResNet mimarisinin son katmanından elde edilen 512 boyutlu uzaysal vektör serilerini
+                 zaman/sıra düzleminde işleyerek pikseller arası mikroskobik manipülasyonları ayrıştırır.
+    """
     def __init__(self):
+        """
+            @brief Katman yapılandırmalarını gerçekleştiren kurucu fonksiyon.
+            @details 512 girdili, 128 gizli hücreli bir LSTM katmanı ve olasılık çıktısı üreten doğrusal bir sınıflandırma (FC) katmanı ayağa kaldırır.
+        """
         super(ForgeryLSTM, self).__init__()
         self.lstm = nn.LSTM(input_size=512, hidden_size=128, batch_first=True)
         self.fc = nn.Linear(128, 1)
 
     def forward(self, x):
+        """
+            @brief Modelin ileri besleme (forward propagation) hesaplamalarını yürütür.
+            @param x CNN modelinden sıkıştırılarak aktarılan tensör verisi.
+            @return Olasılık değeri döndüren Sigmoid aktivasyon fonksiyonu çıktısı ([0, 1] arası).
+        """
         _, (h_n, _) = self.lstm(x)
         return torch.sigmoid(self.fc(h_n[-1]))
 
@@ -62,6 +76,15 @@ transform = transforms.Compose([
 # AI analiz
 # ==============================
 def run_ai_analysis(img_pil):
+    """
+        @brief Derin öğrenme (CNN + LSTM) hibrit mimarisi ile görselin manipülasyon skorunu hesaplar.
+        @details PIL formatında gelen görseli ResNet standartlarına göre normalize eder, ardından
+                 eğitilmiş ağırlıklar üzerinden olasılık değerlerini ve ardışık katmanlardan LSTM
+                 özniteliklerini çıkararak füzyon bir güven skoru üretir.
+        @param img_pil PIL kütüphanesi formatında okunmuş RGB giriş görseli.
+        @return final_score İki modelin ortak kararı olan nihai anomali skoru yüzdesi.
+        @return status Skorun %50 eşik değerini aşıp aşmadığını belirten boolean durum bilgisi.
+    """
     image = transform(img_pil).unsqueeze(0).to(device)
 
     with torch.no_grad():
